@@ -86,7 +86,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## TaskCommander
 
-Copyright (c) 2019 fshen <fshen@xogrp.com>
+Copyright (c) 2019 Ficow Shen <ficow_shen@qq.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

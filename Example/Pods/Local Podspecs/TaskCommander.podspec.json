@@ -2,6 +2,7 @@
   "name": "TaskCommander",
   "version": "1.0.0",
   "summary": "Managing tasks with RxSwift.",
+  "swift_version": "5.0",
   "description": "Manage your task by using RxSwift. And there are some predefined Task types. Such as general task, download task and upload task.",
   "homepage": "https://github.com/FicowShen/TaskCommander",
   "license": {
