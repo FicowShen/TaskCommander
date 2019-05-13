@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (4.8.2)
+  - RxAlamofire (4.3.0):
+    - RxAlamofire/Core (= 4.3.0)
+  - RxAlamofire/Core (4.3.0):
+    - Alamofire (~> 4.5)
+    - RxSwift (~> 4)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - TaskCommander (1.0.0):
+    - Alamofire (~> 4.8.1)
+    - RxAlamofire (~> 4.3.0)
+    - RxSwift (~> 4.4.0)
+
+DEPENDENCIES:
+  - RxCocoa (~> 4.4.0)
+  - TaskCommander (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - RxAlamofire
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+
+EXTERNAL SOURCES:
+  TaskCommander:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  TaskCommander: 83fd0024664bbdb7884211e5d57d06387ae07116
+
+PODFILE CHECKSUM: efc004eadb13755a4db5bbe95b1f45a30e00536b
+
+COCOAPODS: 1.6.1

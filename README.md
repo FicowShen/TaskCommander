@@ -22,7 +22,7 @@ pod 'TaskCommander'
 
 ## Author
 
-fshen, fshen@xogrp.com
+Ficow Shen, ficow_shen@qq.com
 
 ## License
 

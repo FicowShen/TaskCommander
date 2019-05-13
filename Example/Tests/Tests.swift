@@ -1,5 +1,6 @@
 import XCTest
 import TaskCommander
+import RxSwift
 
 class Tests: XCTestCase {
     
