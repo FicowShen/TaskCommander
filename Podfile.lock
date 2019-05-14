@@ -17,7 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - RxCocoa (~> 4.4.0)
-  - TaskCommander (from `../`)
+  - TaskCommander (from `./`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -29,7 +29,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   TaskCommander:
-    :path: "../"
+    :path: "./"
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -37,8 +37,8 @@ SPEC CHECKSUMS:
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
-  TaskCommander: 7e88ee3d4e415b65dafb7bef088d041a6227b8d5
+  TaskCommander: 47fee9383edae75589dd904ae3cffe60d147a123
 
-PODFILE CHECKSUM: efc004eadb13755a4db5bbe95b1f45a30e00536b
+PODFILE CHECKSUM: 9a7aa65c9579ae3f28bc98dc43504ce42d8a70b9
 
 COCOAPODS: 1.6.1

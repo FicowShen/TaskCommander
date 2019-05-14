@@ -19,7 +19,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "TaskCommander/Classes/**/*",
+  "source_files": "Sources/Classes/**/*",
   "dependencies": {
     "RxSwift": [
       "~> 4.4.0"

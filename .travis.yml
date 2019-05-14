@@ -2,16 +2,24 @@
 # * https://www.objc.io/issues/6-build-tools/travis-ci/
 # * https://github.com/supermarin/xcpretty#usage
 
-os:
-    - osx
-osx_image: xcode10.2
-language: objective-c
+language: swift
 
-# cache: cocoapods
-# podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
+osx_image: 
+- xcode10.1
+- xcode10.2
+
+
+env:
+- SCHEME=TaskCommander-Example SWIFT_VERSION=5.0
+
+
+cache: bundler
+
+
+before_install:
+  - gem update --system
+  - gem install bundler
+
 
 install:
   - if [[ `uname` == "Linux" ]] ; then
@@ -21,26 +29,10 @@ install:
       swift -version;
     fi
 
+
 script:
-  - if [[ `uname` == "Unix" ]] ; then
-        brew install swiftlint || true;
-    fi
-  -
-    if [[ ! -z "${BUILD}" ]] ; then
-      eval "TRAVIS=1 ${BUILD}";
-    else
-      if [[ "${DANGER}" -eq 1 ]] ; then
-        bundle install --path vendor/bundle;
-        bundle exec danger --verbose;
-      else
-        if [[ `uname` == "Darwin" ]] ; then
-          xcodebuild -version;
-          xcodebuild -showsdks;
-        fi;
-        swift --version;
-        TRAVIS=1 ./scripts/all-tests.sh "${TEST}";
-      fi;
-    fi;
+  - bundle exec fastlane test_ci
+
 
 after_success:
   - sleep 5 # workaround https://github.com/travis-ci/travis-ci/issues/4725

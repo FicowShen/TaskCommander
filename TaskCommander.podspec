@@ -31,10 +31,10 @@ Manage your task by using RxSwift. And there are some predefined Task types. Suc
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'TaskCommander/Classes/**/*'
+  s.source_files = ["Sources/Classes/**/*.swift"]
   
   # s.resource_bundles = {
-  #   'TaskCommander' => ['TaskCommander/Assets/*.png']
+  #   'TaskCommander' => ['Sources/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
