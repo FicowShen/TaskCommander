@@ -5,11 +5,34 @@
 [![License](https://img.shields.io/cocoapods/l/TaskCommander.svg?style=flat)](https://cocoapods.org/pods/TaskCommander)
 [![Platform](https://img.shields.io/cocoapods/p/TaskCommander.svg?style=flat)](https://cocoapods.org/pods/TaskCommander)
 
-## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Contents
+- Run Example
+- Requirements
+- Communication
+- Installation
+- Author
+- License
+
+
+## Run Example
+
+To run the example project `TaskCommander`, clone the repo, and run `pod install` from the Example directory first.
+
 
 ## Requirements
+- iOS 10.0+
+- Xcode 10.0+
+- Swift 5.0+
+
+
+## Communication
+- If you need help, send me emails. (Prefix the email title with library name)
+- If you'd like to ask a general question, use Stack Overflow.
+- If you found a bug, open an issue.
+- If you have a feature request, open an issue.
+- If you want to contribute, submit a pull request.
 
 ## Installation
 
@@ -20,9 +43,11 @@ it, simply add the following line to your Podfile:
 pod 'TaskCommander'
 ```
 
+
 ## Author
 
 Ficow Shen, ficow_shen@qq.com
+
 
 ## License
 
