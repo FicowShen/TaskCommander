@@ -31,7 +31,7 @@ Manage your task by using RxSwift. And there are some predefined Task types. Suc
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = ["Sources/Classes/**/*.swift"]
+  s.source_files = 'Sources/**/*.swift'
   
   # s.resource_bundles = {
   #   'TaskCommander' => ['Sources/Assets/*.png']
