@@ -2,7 +2,7 @@
 
 [![CI Status](https://travis-ci.org/FicowShen/TaskCommander.svg?branch=master)](https://travis-ci.org/FicowShen/TaskCommander)
 [![Version](https://img.shields.io/cocoapods/v/TaskCommander.svg?style=flat)](https://cocoapods.org/pods/TaskCommander)
-[![License](https://img.shields.io/cocoapods/l/TaskCommander.svg?style=flat)](https://cocoapods.org/pods/TaskCommander)
+[![License](https://img.shields.io/cocoapods/l/TaskCommander.svg?style=flat)](https://raw.githubusercontent.com/FicowShen/TaskCommander/master/LICENSE)
 [![Platform](https://img.shields.io/badge/platforms-iOS-333333.svg)](https://cocoapods.org/pods/TaskCommander)
 
 
