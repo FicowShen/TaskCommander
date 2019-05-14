@@ -13,26 +13,12 @@ env:
 - SCHEME=TaskCommander-Example SWIFT_VERSION=5.0
 
 
-cache: bundler
-
-
 before_install:
   - gem update --system
   - gem install bundler
 
 
-install:
-  - if [[ `uname` == "Linux" ]] ; then
-      curl "https://swift.org/builds/swift-${swift}-release/ubuntu1604/swift-${swift}-RELEASE/swift-${swift}-RELEASE-ubuntu16.04.tar.gz" > /tmp/swift.tar.gz;
-      tar -xzf /tmp/swift.tar.gz -C /tmp;
-      export PATH="${PATH}:/tmp/swift-${swift}-RELEASE-ubuntu16.04/usr/bin";
-      swift -version;
-    fi
-
-
 script:
   - bundle exec fastlane test_ci
+  - pod lib lint
 
-
-after_success:
-  - sleep 5 # workaround https://github.com/travis-ci/travis-ci/issues/4725
