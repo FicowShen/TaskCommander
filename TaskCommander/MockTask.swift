@@ -11,10 +11,10 @@ final class MockTask: Task {
             let failNow = { Int.random(in: 0...10) < 3 }
             for i in 0...100 {
                 Thread.sleep(forTimeInterval: TimeInterval(Int.random(in: 1...10)) * 0.01)
-                let taskProgress = (completedUnitCount: Int64(i), totalUnitCount: Int64(100))
+                let taskProgress = TaskProgress(completedUnitCount: Int64(i), totalUnitCount: Int64(100))
                 observer.onNext(taskProgress)
                 if tryToFail && failNow() {
-                    observer.onError(NSError.makeError(message: "upload failed"))
+                    observer.onError(NSError(domain: "com.ficow.MockTask", code: -1, userInfo: [NSLocalizedDescriptionKey: "upload failed"]))
                     return
                 }
             }

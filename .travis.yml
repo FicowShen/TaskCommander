@@ -11,7 +11,7 @@ osx_image:
 
 
 env:
-- SCHEME=TaskCommander-Example SWIFT_VERSION=5.0
+- SCHEME=TaskCommander_Tests SWIFT_VERSION=5.0
 
 
 cache: bundler

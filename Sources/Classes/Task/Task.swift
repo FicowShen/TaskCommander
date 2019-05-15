@@ -1,7 +1,25 @@
 import Foundation
 import RxSwift
 
-public typealias TaskProgress = (completedUnitCount: Int64, totalUnitCount: Int64)
+public struct TaskProgress: Equatable {
+    public let completedUnitCount: Int64
+    public let totalUnitCount: Int64
+
+    public init(completedUnitCount: Int64, totalUnitCount: Int64) {
+        self.completedUnitCount = completedUnitCount
+        self.totalUnitCount = totalUnitCount
+    }
+}
+
+public struct GroupTaskInfo: Equatable {
+    public let successCount: Int
+    public let failureCount: Int
+
+    public init(successCount: Int, failureCount: Int) {
+        self.successCount = successCount
+        self.failureCount = failureCount
+    }
+}
 
 public enum TaskState {
     case ready
@@ -56,9 +74,9 @@ open class Task: TaskProtocol {
 }
 
 public extension Collection where Self.Element: TaskProtocol {
-    var groupObservable: Observable<(successCount: Int, failureCount: Int)> {
+    var groupObservable: Observable<GroupTaskInfo> {
 
-        let subject = PublishSubject<(successCount: Int, failureCount: Int)>()
+        let subject = PublishSubject<GroupTaskInfo>()
         var disposables = [Disposable]()
         var successCount = 0
         var failureCount = 0
@@ -73,7 +91,7 @@ public extension Collection where Self.Element: TaskProtocol {
                 break
             }
             guard (successCount + failureCount) == self.count else { return }
-            subject.onNext((successCount, failureCount))
+            subject.onNext(GroupTaskInfo(successCount: successCount, failureCount: failureCount))
             subject.onCompleted()
         }
 

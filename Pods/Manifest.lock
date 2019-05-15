@@ -6,17 +6,23 @@ PODS:
     - Alamofire (~> 4.5)
     - RxSwift (~> 4)
   - RxAtomic (4.4.2)
+  - RxBlocking (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - RxCocoa (4.4.2):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.4.2):
     - RxAtomic (>= 4.4.2, ~> 4.4)
+  - RxTest (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - TaskCommander (1.0.0):
     - Alamofire (~> 4.8.1)
     - RxAlamofire (~> 4.3.0)
     - RxSwift (~> 4.4.0)
 
 DEPENDENCIES:
+  - RxBlocking
   - RxCocoa (~> 4.4.0)
+  - RxTest
   - TaskCommander (from `./`)
 
 SPEC REPOS:
@@ -24,8 +30,10 @@ SPEC REPOS:
     - Alamofire
     - RxAlamofire
     - RxAtomic
+    - RxBlocking
     - RxCocoa
     - RxSwift
+    - RxTest
 
 EXTERNAL SOURCES:
   TaskCommander:
@@ -35,10 +43,12 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
-  TaskCommander: 47fee9383edae75589dd904ae3cffe60d147a123
+  RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
+  TaskCommander: b228a1e1b1d49b3f97918be5f5cdfc9d28a95a63
 
-PODFILE CHECKSUM: 9a7aa65c9579ae3f28bc98dc43504ce42d8a70b9
+PODFILE CHECKSUM: b3ec653f1e19ad8fc600091ef725c44ac9e84c57
 
 COCOAPODS: 1.6.1

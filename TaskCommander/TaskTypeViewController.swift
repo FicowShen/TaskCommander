@@ -60,7 +60,7 @@ final class TaskTypeViewController: UIViewController {
             }.disposed(by: disposeBag)
     }
 
-    private func groupTaskDidFinish(_ info: (successCount: Int, failureCount: Int), forScene scene: Scene) {
+    private func groupTaskDidFinish(_ info: GroupTaskInfo, forScene scene: Scene) {
         showGroupTaskNotification(groupID: scene.rawValue, successCount: info.successCount, failureCount: info.failureCount)
     }
 

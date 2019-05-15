@@ -21,6 +21,8 @@
 		8993AEEC22897ADC00EB61A3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993AEE522897ADB00EB61A3 /* Extensions.swift */; };
 		8993AEED22897ADC00EB61A3 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993AEE622897ADB00EB61A3 /* Tools.swift */; };
 		8993AEEE22897ADC00EB61A3 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993AEE722897ADC00EB61A3 /* MockTask.swift */; };
+		89B5D6C1228BD14100E3030A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993AEE622897ADB00EB61A3 /* Tools.swift */; };
+		89B5D6C4228BD26600E3030A /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B5D6C2228BD23200E3030A /* MockTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 		8993AEE522897ADB00EB61A3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8993AEE622897ADB00EB61A3 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		8993AEE722897ADC00EB61A3 /* MockTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
+		89B5D6C2228BD23200E3030A /* MockTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
 		904D86117B78AB336E3FBA3F /* Pods-TaskCommander_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskCommander_Tests.release.xcconfig"; path = "Target Support Files/Pods-TaskCommander_Tests/Pods-TaskCommander_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		957AE426F550A714FE0D2B05 /* Pods-TaskCommander_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskCommander_Example.debug.xcconfig"; path = "Target Support Files/Pods-TaskCommander_Example/Pods-TaskCommander_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BDAEC56E1FDB735ADB43D970 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				89B5D6C2228BD23200E3030A /* MockTask.swift */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -207,6 +211,7 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
+				CB2B895D778C31C3D3E72FBA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -324,6 +329,34 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CB2B895D778C31C3D3E72FBA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaskCommander_Tests/Pods-TaskCommander_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaskCommander_Tests/Pods-TaskCommander_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E62D17BE01E268CE5D3DA349 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,6 +411,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				89B5D6C4228BD26600E3030A /* MockTask.swift in Sources */,
+				89B5D6C1228BD14100E3030A /* Tools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

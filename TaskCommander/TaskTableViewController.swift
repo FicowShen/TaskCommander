@@ -116,7 +116,7 @@ final class TaskTableViewController: UITableViewController {
             .disposed(by: disposeBag)
     }
 
-    private func groupTaskDidFinish(_ info: (successCount: Int, failureCount: Int)) {
+    private func groupTaskDidFinish(_ info: GroupTaskInfo) {
         showGroupTaskNotification(groupID: scene.rawValue, successCount: info.successCount, failureCount: info.failureCount)
     }
 

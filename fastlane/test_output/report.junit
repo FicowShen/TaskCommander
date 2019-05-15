@@ -2,6 +2,6 @@
 <testsuites name='TaskCommander_Tests.xctest' tests='2' failures='0'>
   <testsuite name='TaskCommander_Tests.Tests' tests='2' failures='0'>
     <testcase classname='TaskCommander_Tests.Tests' name='testExample' time='0.001'/>
-    <testcase classname='TaskCommander_Tests.Tests' name='testPerformanceExample' time='0.364'/>
+    <testcase classname='TaskCommander_Tests.Tests' name='testPerformanceExample' time='0.262'/>
   </testsuite>
 </testsuites>

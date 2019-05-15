@@ -29,7 +29,7 @@ public final class UploadTask: Task {
                 switch event {
                 case .next(let progress):
                     guard progress.totalBytes != 0 else { return }
-                    let taskProgress = (completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
+                    let taskProgress = TaskProgress(completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
                     observer.onNext(taskProgress)
                 case .error(let error):
                     observer.onError(error)

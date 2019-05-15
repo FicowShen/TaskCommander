@@ -26,6 +26,10 @@ platform :ios do
     test(scheme: "TaskCommander-Example", swift_version: "5.0")
   end
 
+  lane :unittest do
+    test(scheme: "TaskCommander_Tests", swift_version: "5.0")
+  end
+
   lane :test_ci do
     test(scheme: ENV["SCHEME"], swift_version: ENV["SWIFT_VERSION"])
   end
