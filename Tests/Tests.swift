@@ -18,7 +18,7 @@ class Tests: XCTestCase {
     
     func testTwoNormalTaskCompleted() {
         let progress = scheduler.createObserver(TaskProgress.self)
-        let commander = TaskCommander<MockTask>()
+        let commander = TaskCommander<MockTask>(subscribeScheduler: scheduler, observeScheduler: scheduler)
         var mockTasks = [MockTask]()
 
         let mockTask1 = MockTask()
@@ -76,7 +76,7 @@ class Tests: XCTestCase {
 
     func testTwoNormalTaskFailed() {
         let progress = scheduler.createObserver(TaskProgress.self)
-        let commander = TaskCommander<MockTask>()
+        let commander = TaskCommander<MockTask>(subscribeScheduler: scheduler, observeScheduler: scheduler)
         var mockTasks = [MockTask]()
 
         let mockTask1 = MockTask()
@@ -133,7 +133,7 @@ class Tests: XCTestCase {
 
     func testNormalGroupTasks() {
         let taskInfo = scheduler.createObserver(GroupTaskInfo.self)
-        let commander = TaskCommander<MockTask>()
+        let commander = TaskCommander<MockTask>(subscribeScheduler: scheduler, observeScheduler: scheduler)
         var mockTasks = [MockTask]()
 
         let mockTask1 = MockTask()
@@ -158,7 +158,7 @@ class Tests: XCTestCase {
 
         scheduler.createColdObservable([.next(15, TaskProgress(completedUnitCount: 1, totalUnitCount: 5)),
                                         .next(25, TaskProgress(completedUnitCount: 3, totalUnitCount: 5)),
-                                        .error(45, error)])
+                                        .error(44, error)])
             .bind(to: mockTask2.subject)
             .disposed(by: disposeBag)
 

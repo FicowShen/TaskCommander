@@ -17,7 +17,7 @@ final class TaskTableViewController: UITableViewController {
     private let scene: Scene
     private let disposeBag = DisposeBag()
 
-    private var TaskManager: TaskCommander<Task>?
+    private var taskManager: TaskCommander<Task>?
     private var currentTasks = [Task]()
 
     private lazy var picker: UIImagePickerController = {
@@ -58,8 +58,6 @@ final class TaskTableViewController: UITableViewController {
         loadMockTasks()
     }
 
-
-
     private func loadMockTasks() {
         defer {
             if !currentTasks.isEmpty {
@@ -88,13 +86,13 @@ final class TaskTableViewController: UITableViewController {
             }
 
             let queue = DispatchQueue(label: UUID().uuidString, qos: .background, attributes: .concurrent)
-            let TaskManager = TaskCommander<Task>(subscribeScheduler: ConcurrentDispatchQueueScheduler(queue: queue), observeScheduler: MainScheduler.instance)
-            self.TaskManager = TaskManager
-            mockTaskCommanders[scene] = TaskManager
-            TaskManager.addTasks(currentTasks)
+            let taskManager = TaskCommander<Task>(subscribeScheduler: ConcurrentDispatchQueueScheduler(queue: queue), observeScheduler: MainScheduler.instance)
+            self.taskManager = taskManager
+            mockTaskCommanders[scene] = taskManager
+            taskManager.addTasks(currentTasks)
             return
         }
-        self.TaskManager = TaskManager
+        self.taskManager = TaskManager
         currentTasks = TaskManager.currentTasks
     }
 
@@ -132,7 +130,7 @@ final class TaskTableViewController: UITableViewController {
                 let task = UploadTask(request: request, data: data)
                 self.currentTasks.append(task)
                 self.tableView.reloadData()
-                self.TaskManager?.addTask(task)
+                self.taskManager?.addTask(task)
             })
             .disposed(by: disposeBag)
     }

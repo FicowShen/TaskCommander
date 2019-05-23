@@ -78,8 +78,8 @@ public final class TaskCommander<T: TaskProtocol> {
             }, onCompleted: { [weak self] in
                 task.state = .success
                 observer.onNext(.success)
-                task.observable = nil
                 observer.onCompleted()
+                task.observable = nil
                 self?.taskFinished(task)
             })
             .disposed(by: disposeBag)
