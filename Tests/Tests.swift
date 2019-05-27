@@ -12,7 +12,7 @@ class Tests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        scheduler = TestScheduler(initialClock: 0)
+        scheduler = TestScheduler(initialClock: 0, resolution: 1, simulateProcessingDelay: false)
         disposeBag = DisposeBag()
     }
     
@@ -55,6 +55,21 @@ class Tests: XCTestCase {
                                         .completed(45)])
             .bind(to: mockTask2.subject)
             .disposed(by: disposeBag)
+
+        var workingStateCount = 0
+
+        mockTask1.observable?
+            .subscribe(onNext: { (taskState) in
+            switch taskState {
+            case .ready: break
+            case .working:
+                workingStateCount += 1
+                XCTAssertEqual(taskState.description, "working")
+            case .success:
+                XCTAssertEqual(workingStateCount, 3)
+            default: XCTFail()
+            }
+        }).disposed(by: disposeBag)
 
         scheduler.start()
 
@@ -158,7 +173,7 @@ class Tests: XCTestCase {
 
         scheduler.createColdObservable([.next(15, TaskProgress(completedUnitCount: 1, totalUnitCount: 5)),
                                         .next(25, TaskProgress(completedUnitCount: 3, totalUnitCount: 5)),
-                                        .error(44, error)])
+                                        .error(45, error)])
             .bind(to: mockTask2.subject)
             .disposed(by: disposeBag)
 
