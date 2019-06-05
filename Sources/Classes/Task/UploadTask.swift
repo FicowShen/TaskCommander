@@ -7,11 +7,13 @@ public final class UploadTask: Task {
 
     public let request: URLRequest
     public let data: Data
+    private let uploadRequestObservable: Observable<UploadRequest>
     private var bag: DisposeBag?
 
-    public init(request: URLRequest, data: Data) {
+    public init(request: URLRequest, data: Data, sessionManager: SessionManager = SessionManager.default) {
         self.request = request
         self.data = data
+        uploadRequestObservable = sessionManager.rx.upload(data, urlRequest: request)
     }
     
     public override func start() -> Observable<TaskProgress> {
@@ -20,9 +22,7 @@ public final class UploadTask: Task {
         let bag = DisposeBag()
         self.bag = bag
 
-        let observable = SessionManager.default.rx.upload(data, urlRequest: self.request)
-
-        observable
+        uploadRequestObservable
             .flatMap { $0.rx.progress() }
             .observeOn(MainScheduler.instance)
             .subscribe { (event) in
@@ -38,7 +38,7 @@ public final class UploadTask: Task {
                 }
             }.disposed(by: bag)
 
-        observable
+        uploadRequestObservable
             .flatMap { $0.rx.responseData() }
             .observeOn(MainScheduler.instance)
             .subscribe { (_) in

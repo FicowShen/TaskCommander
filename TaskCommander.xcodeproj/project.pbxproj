@@ -11,8 +11,10 @@
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* GeneralTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* GeneralTaskTests.swift */; };
 		7CF81299D56503837260FCCE /* Pods_TaskCommander_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5E7EE4892575DC56FDA552 /* Pods_TaskCommander_Tests.framework */; };
+		8910B208229BF5D200A92ABA /* DownloadTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910B207229BF5D200A92ABA /* DownloadTaskTests.swift */; };
+		8910B20A229BF99100A92ABA /* UploadTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910B209229BF99100A92ABA /* UploadTaskTests.swift */; };
 		8993AEE022897AD200EB61A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8993AEDE22897AD200EB61A3 /* Main.storyboard */; };
 		8993AEE822897ADC00EB61A3 /* TaskTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993AEE122897ADB00EB61A3 /* TaskTypeViewController.swift */; };
 		8993AEE922897ADC00EB61A3 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993AEE222897ADB00EB61A3 /* TaskTableViewCell.swift */; };
@@ -45,9 +47,11 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TaskCommander_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskCommander_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* GeneralTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskTests.swift; sourceTree = "<group>"; };
 		629BFEF7907E9A47A1E6B91C /* TaskCommander.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TaskCommander.podspec; path = ../TaskCommander.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		81B7F5FC3339F7A1525D7DE8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		8910B207229BF5D200A92ABA /* DownloadTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTaskTests.swift; sourceTree = "<group>"; };
+		8910B209229BF99100A92ABA /* UploadTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTaskTests.swift; sourceTree = "<group>"; };
 		8993AEDF22897AD200EB61A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8993AEE122897ADB00EB61A3 /* TaskTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTypeViewController.swift; sourceTree = "<group>"; };
 		8993AEE222897ADB00EB61A3 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -157,7 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				89B5D6C2228BD23200E3030A /* MockTask.swift */,
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* GeneralTaskTests.swift */,
+				8910B207229BF5D200A92ABA /* DownloadTaskTests.swift */,
+				8910B209229BF99100A92ABA /* UploadTaskTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -340,6 +346,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-TaskCommander_Tests/Pods-TaskCommander_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
@@ -349,6 +356,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
@@ -410,8 +418,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				8910B208229BF5D200A92ABA /* DownloadTaskTests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* GeneralTaskTests.swift in Sources */,
 				89B5D6C4228BD26600E3030A /* MockTask.swift in Sources */,
+				8910B20A229BF99100A92ABA /* UploadTaskTests.swift in Sources */,
 				89B5D6C1228BD14100E3030A /* Tools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

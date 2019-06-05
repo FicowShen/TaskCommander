@@ -5,7 +5,7 @@ import RxCocoa
 import RxTest
 import RxBlocking
 
-class Tests: XCTestCase {
+class GeneralTaskTests: XCTestCase {
 
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!

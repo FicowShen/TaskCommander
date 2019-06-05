@@ -9,6 +9,7 @@ target 'TaskCommander_Example' do
     
     pod 'RxTest'
     pod 'RxBlocking'
+    pod 'OHHTTPStubs/Swift'
     
   end
 end

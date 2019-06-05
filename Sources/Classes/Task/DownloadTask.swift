@@ -7,10 +7,21 @@ public final class DownloadTask: Task {
 
     public let request: URLRequest
     public var data: Data?
+
+    private let observeScheduler: SchedulerType
+
+    private let dataRequestObservable: Observable<DataRequest>
     private var bag: DisposeBag?
 
-    public init(request: URLRequest) {
+    public init(request: URLRequest,
+                sessionManager: SessionManager = SessionManager.default,
+                observeScheduler: SchedulerType = MainScheduler.instance) {
         self.request = request
+        self.observeScheduler = observeScheduler
+
+        dataRequestObservable = sessionManager.rx
+            .request(urlRequest: request)
+            .validate(statusCode: 200..<300)
     }
 
     public override func start() -> Observable<TaskProgress> {
@@ -19,29 +30,24 @@ public final class DownloadTask: Task {
         let bag = DisposeBag()
         self.bag = bag
 
-        let observable = SessionManager.default.rx
-            .request(urlRequest: self.request)
-            .validate(statusCode: 200 ..< 300)
-
-        observable
+        dataRequestObservable
+            .skip(1)
             .flatMap { $0.rx.progress() }
-            .observeOn(MainScheduler.instance)
+            .observeOn(observeScheduler)
             .subscribe { [weak self] (event) in
                 switch event {
                 case .next(let progress):
-                    guard progress.totalBytes != 0 else { return }
                     let taskProgress = TaskProgress(completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
                     observer.onNext(taskProgress)
                 case .error(let error):
                     observer.onError(error)
-                case .completed:
-                    break
+                case .completed: break
                 }
             }.disposed(by: bag)
 
-        observable
+        dataRequestObservable
             .flatMap { $0.rx.data() }
-            .observeOn(MainScheduler.instance)
+            .observeOn(observeScheduler)
             .subscribe { [weak self] (event) in
                 defer {
                     observer.onCompleted()
