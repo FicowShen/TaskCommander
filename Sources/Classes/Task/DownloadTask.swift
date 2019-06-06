@@ -6,7 +6,7 @@ import RxAlamofire
 public final class DownloadTask: Task {
 
     public let request: URLRequest
-    public var data: Data?
+    public private(set) var data: Data?
 
     private let observeScheduler: SchedulerType
 
@@ -31,12 +31,12 @@ public final class DownloadTask: Task {
         self.bag = bag
 
         dataRequestObservable
-            .skip(1)
             .flatMap { $0.rx.progress() }
             .observeOn(observeScheduler)
             .subscribe { [weak self] (event) in
                 switch event {
                 case .next(let progress):
+                    guard progress.totalBytes > 0 else { return }
                     let taskProgress = TaskProgress(completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
                     observer.onNext(taskProgress)
                 case .error(let error):

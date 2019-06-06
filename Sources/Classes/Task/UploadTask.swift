@@ -28,21 +28,21 @@ public final class UploadTask: Task {
             .subscribe { (event) in
                 switch event {
                 case .next(let progress):
-                    guard progress.totalBytes != 0 else { return }
+                    guard progress.totalBytes > 0 else { return }
                     let taskProgress = TaskProgress(completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
                     observer.onNext(taskProgress)
                 case .error(let error):
                     observer.onError(error)
-                case .completed:
-                    break
+                case .completed: break
                 }
             }.disposed(by: bag)
 
         uploadRequestObservable
             .flatMap { $0.rx.responseData() }
             .observeOn(MainScheduler.instance)
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
                 observer.onCompleted()
+                self?.bag = nil
             }.disposed(by: bag)
 
         return subject.asObservable()

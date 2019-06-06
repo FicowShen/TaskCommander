@@ -60,9 +60,6 @@ public final class TaskCommander<T: TaskProtocol> {
         let disposeBag = DisposeBag()
         workingTasks[task] = disposeBag
 
-        task.state = .ready
-        observer.onNext(.ready)
-
         task.start()
             .subscribeOn(subscribeScheduler)
             .observeOn(observeScheduler)
@@ -83,6 +80,9 @@ public final class TaskCommander<T: TaskProtocol> {
                 self?.taskFinished(task)
             })
             .disposed(by: disposeBag)
+
+        task.state = .ready
+        observer.onNext(.ready)
     }
 
     private func taskFinished(_ task: T) {

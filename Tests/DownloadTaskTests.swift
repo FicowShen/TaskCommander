@@ -8,8 +8,6 @@ import Alamofire
 import RxAlamofire
 import OHHTTPStubs
 
-@testable import Alamofire
-
 private struct Dummy {
     static let DataJSONContent = "{\"hello\":\"world\", \"foo\":\"bar\", \"zero\": 0}"
     static let DataJSON = DataJSONContent.data(using: String.Encoding.utf8)!
@@ -42,6 +40,7 @@ class DownloadTaskTests: XCTestCase {
         let urlRequest = URLRequest(url: url)
         let task = DownloadTask(request: urlRequest,
                                 sessionManager: manager)
+
 
         let commander = TaskCommander<DownloadTask>(subscribeScheduler: MainScheduler.instance, observeScheduler: MainScheduler.instance)
         commander.addTask(task)
