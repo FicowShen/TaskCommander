@@ -46,24 +46,19 @@ public final class UploadTask: Task {
         uploadRequestObservable
             .flatMap { $0.rx.progress() }
             .observeOn(observeScheduler)
-            .subscribe { (event) in
+            .subscribe { [weak self] (event) in
                 switch event {
                 case .next(let progress):
                     guard progress.totalBytes > 0 else { return }
                     let taskProgress = TaskProgress(completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
                     observer.onNext(taskProgress)
+                case .completed:
+                    observer.onCompleted()
+                    self?.bag = nil
                 case .error(let error):
                     observer.onError(error)
-                case .completed: break
+                    self?.bag = nil
                 }
-            }.disposed(by: bag)
-
-        uploadRequestObservable
-            .flatMap { $0.rx.responseData() }
-            .observeOn(observeScheduler)
-            .subscribe { [weak self] (_) in
-                observer.onCompleted()
-                self?.bag = nil
             }.disposed(by: bag)
 
         return subject.asObservable()

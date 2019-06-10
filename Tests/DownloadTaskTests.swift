@@ -21,7 +21,6 @@ class DownloadTaskTests: XCTestCase {
     }
 
     func testDownloadTaskWithURLString() {
-
         guard let task = DownloadTask(urlString: fileURL, sessionManager: manager) else {
             XCTFail("Failed to load DownloadTask")
             return
@@ -63,7 +62,27 @@ class DownloadTaskTests: XCTestCase {
             XCTAssertEqual(progress.totalUnitCount, Int64(data.count))
         default: XCTFail("task")
         }
+    }
 
+    func testDownloadError() {
+        guard let task = DownloadTask(urlString: fileURL + "x", sessionManager: manager) else {
+            XCTFail("Failed to load DownloadTask")
+            return
+        }
+        let commander = TaskCommander<DownloadTask>(subscribeScheduler: MainScheduler.instance, observeScheduler: MainScheduler.instance)
+        commander.addTask(task)
+
+        guard let taskStates = try? task.observable?.toBlocking().toArray() else {
+            XCTFail("DownloadTask failed")
+            return
+        }
+        XCTAssertEqual(taskStates.count, 2)
+
+        guard case .working = taskStates[0],
+            case .failure(let error as NSError) = taskStates[1]
+            else { XCTFail("DownloadTask must fail with error"); return }
+        XCTAssertEqual(error.localizedDescription, "Response status code was unacceptable: 404.")
+        XCTAssertEqual(error.code, 3)
     }
 
 }

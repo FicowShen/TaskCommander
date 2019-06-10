@@ -68,4 +68,27 @@ class UploadTaskTests: XCTestCase {
         XCTAssertEqual(task.data.count, 40)
     }
 
+    func testUploadError() {
+        guard let data = textContent.data(using: .utf8),
+            let task = UploadTask(urlString: "https://www.googleapis.co", data: data)
+            else {
+                XCTFail("Load data/task failed")
+                return
+        }
+
+        let commander = TaskCommander<UploadTask>(subscribeScheduler: MainScheduler.instance, observeScheduler: MainScheduler.instance)
+        commander.addTask(task)
+
+        guard let taskStates = try? task.observable?.toBlocking().toArray() else {
+            XCTFail("UploadTask failed")
+            return
+        }
+        XCTAssertEqual(taskStates.count, 1)
+
+        guard case .failure(let error as NSError) = taskStates[0]
+            else { XCTFail("UploadTask must fail with error"); return }
+        XCTAssertEqual(error.localizedDescription, "A server with the specified hostname could not be found.")
+        XCTAssertEqual(error.code, -1003)
+    }
+
 }

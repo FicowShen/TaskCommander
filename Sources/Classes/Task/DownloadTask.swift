@@ -42,29 +42,29 @@ public final class DownloadTask: Task {
         dataRequestObservable
             .flatMap { $0.rx.progress() }
             .observeOn(observeScheduler)
-            .subscribe { [weak self] (event) in
+            .subscribe { (event) in
                 switch event {
                 case .next(let progress):
                     guard progress.totalBytes > 0 else { return }
                     let taskProgress = TaskProgress(completedUnitCount: progress.bytesWritten, totalUnitCount: progress.totalBytes)
                     observer.onNext(taskProgress)
-                case .error(let error):
-                    observer.onError(error)
-                case .completed: break
+                default: break
                 }
             }.disposed(by: bag)
 
         dataRequestObservable
             .flatMap { $0.rx.data() }
             .observeOn(observeScheduler)
-            .subscribe { [weak self] (event) in
-                defer {
-                    observer.onCompleted()
-                    self?.bag = nil
-                }
-                guard let data = event.element else { return }
+            .subscribe(onNext: { [weak self] (data) in
                 self?.data = data
-            }.disposed(by: bag)
+            }, onError: { [weak self] (error) in
+                observer.onError(error)
+                self?.bag = nil
+            }, onCompleted: { [weak self] in
+                observer.onCompleted()
+                self?.bag = nil
+            })
+            .disposed(by: bag)
 
         return subject.asObservable()
     }
