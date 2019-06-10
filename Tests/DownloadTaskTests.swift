@@ -40,8 +40,9 @@ class DownloadTaskTests: XCTestCase {
         let commander = TaskCommander<DownloadTask>(subscribeScheduler: MainScheduler.instance, observeScheduler: MainScheduler.instance)
         commander.addTask(task)
 
-        guard let taskStates = try? task.observable?.toBlocking().toArray() else {
-            XCTFail("Load taskStates failed")
+        guard let taskStates = try? task.observable?.toBlocking().toArray(),
+            let data = task.data else {
+            XCTFail("Download failed")
             return
         }
 
@@ -58,8 +59,8 @@ class DownloadTaskTests: XCTestCase {
 
         switch taskStates[firstWorkingIndex] {
         case .working(let progress):
-            XCTAssertEqual(progress.completedUnitCount, 54748)
-            XCTAssertEqual(progress.totalUnitCount, 54748)
+            XCTAssertEqual(progress.completedUnitCount, Int64(data.count))
+            XCTAssertEqual(progress.totalUnitCount, Int64(data.count))
         default: XCTFail("task")
         }
 
