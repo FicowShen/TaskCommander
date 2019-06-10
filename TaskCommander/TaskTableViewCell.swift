@@ -63,13 +63,11 @@ final class TaskTableViewCell: UITableViewCell {
                 displayImage = nil
             }
         case let t as UploadTask:
-            if let _ = task.observable {
-                displayImage = nil
-            } else {
+            if case .success = t.state {
                 showImage(fromData: t.data)
+            } else {
+                displayImage = nil
             }
-        case _ as MockTask:
-            break
         default:
             return
         }

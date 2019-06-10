@@ -6,42 +6,37 @@ import RxTest
 import RxBlocking
 import Alamofire
 import RxAlamofire
-import OHHTTPStubs
-
-private struct Dummy {
-    static let DataJSONContent = "{\"hello\":\"world\", \"foo\":\"bar\", \"zero\": 0}"
-    static let DataJSON = DataJSONContent.data(using: String.Encoding.utf8)!
-}
 
 class DownloadTaskTests: XCTestCase {
 
     var manager: SessionManager!
     var disposeBag: DisposeBag!
 
-    let hostName = "myjsondata.com"
-    let url = URL(string: "myjsondata.com")!
+    let fileURL = "https://raw.githubusercontent.com/ReactiveX/RxSwift/master/assets/Rx_Logo_M.png"
+    lazy var url = URL(string: fileURL)!
 
     override func setUp() {
         manager = SessionManager()
         disposeBag = DisposeBag()
     }
 
-    override func tearDown() {
-        super.tearDown()
-        OHHTTPStubs.removeAllStubs()
+    func testDownloadTaskWithURLString() {
+
+        guard let task = DownloadTask(urlString: fileURL, sessionManager: manager) else {
+            XCTFail("Failed to load DownloadTask")
+            return
+        }
+        startDownloadTask(task)
     }
 
-    func testDownload() {
-        stub(condition: isMethodGET()) { _ in
-            return OHHTTPStubsResponse(data: Dummy.DataJSON,
-                                       statusCode: 200,
-                                       headers: ["Content-Type":"application/json"])
-        }
+    func testDownloadTaskWithRequest() {
         let urlRequest = URLRequest(url: url)
         let task = DownloadTask(request: urlRequest,
                                 sessionManager: manager)
+        startDownloadTask(task)
+    }
 
-
+    func startDownloadTask(_ task: DownloadTask) {
         let commander = TaskCommander<DownloadTask>(subscribeScheduler: MainScheduler.instance, observeScheduler: MainScheduler.instance)
         commander.addTask(task)
 
@@ -50,18 +45,23 @@ class DownloadTaskTests: XCTestCase {
             return
         }
 
-        let expectedStates = [TaskState.working(TaskProgress(completedUnitCount: 41, totalUnitCount: 41)), TaskState.success]
-        XCTAssertEqual(taskStates.count, expectedStates.count)
-        XCTAssertEqual(taskStates.first?.description, "working")
-        XCTAssertEqual(taskStates.last?.description, "success")
-        switch taskStates.first {
-        case .some(.working(let progress)):
-            XCTAssertEqual(progress.completedUnitCount, 41)
-            XCTAssertEqual(progress.totalUnitCount, 41)
+        XCTAssertTrue(taskStates.count > 1)
+        guard let firstWorkingIndex = taskStates.firstIndex(where: { (taskState) -> Bool in taskState.description == "working" }) else {
+            XCTFail("Load firstWorkingIndex failed")
+            return
+        }
+        guard let firstSuccessIndex = taskStates.firstIndex(where: { (taskState) -> Bool in taskState.description == "success" }) else {
+            XCTFail("Load firstSuccessIndex failed")
+            return
+        }
+        XCTAssertTrue(firstWorkingIndex < firstSuccessIndex)
+
+        switch taskStates[firstWorkingIndex] {
+        case .working(let progress):
+            XCTAssertEqual(progress.completedUnitCount, 54748)
+            XCTAssertEqual(progress.totalUnitCount, 54748)
         default: XCTFail("task")
         }
-
-        XCTAssertEqual(task.data?.count, 41)
 
     }
 

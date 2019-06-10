@@ -6,11 +6,10 @@ import RxAlamofire
 public final class DownloadTask: Task {
 
     public let request: URLRequest
+    public let dataRequestObservable: Observable<DataRequest>
     public private(set) var data: Data?
 
     private let observeScheduler: SchedulerType
-
-    private let dataRequestObservable: Observable<DataRequest>
     private var bag: DisposeBag?
 
     public init(request: URLRequest,
@@ -22,6 +21,16 @@ public final class DownloadTask: Task {
         dataRequestObservable = sessionManager.rx
             .request(urlRequest: request)
             .validate(statusCode: 200..<300)
+    }
+
+    public convenience init?(urlString: String,
+                             sessionManager: SessionManager = SessionManager.default,
+                             observeScheduler: SchedulerType = MainScheduler.instance) {
+        guard let url = URL(string: urlString)
+            else { return nil }
+        self.init(request: URLRequest(url: url),
+                  sessionManager: sessionManager,
+                  observeScheduler: observeScheduler)
     }
 
     public override func start() -> Observable<TaskProgress> {

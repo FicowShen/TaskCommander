@@ -1,18 +1,5 @@
 PODS:
   - Alamofire (4.8.2)
-  - OHHTTPStubs/Core (8.0.0)
-  - OHHTTPStubs/Default (8.0.0):
-    - OHHTTPStubs/Core
-    - OHHTTPStubs/JSON
-    - OHHTTPStubs/NSURLSession
-    - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (8.0.0):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (8.0.0):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (8.0.0)
-  - OHHTTPStubs/Swift (8.0.0):
-    - OHHTTPStubs/Default
   - RxAlamofire (4.3.0):
     - RxAlamofire/Core (= 4.3.0)
   - RxAlamofire/Core (4.3.0):
@@ -33,7 +20,6 @@ PODS:
     - RxSwift (~> 4.4.0)
 
 DEPENDENCIES:
-  - OHHTTPStubs/Swift
   - RxBlocking
   - RxCocoa (~> 4.4.0)
   - RxTest
@@ -42,7 +28,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - OHHTTPStubs
     - RxAlamofire
     - RxAtomic
     - RxBlocking
@@ -56,7 +41,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
   RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
   RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
@@ -65,6 +49,6 @@ SPEC CHECKSUMS:
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   TaskCommander: b228a1e1b1d49b3f97918be5f5cdfc9d28a95a63
 
-PODFILE CHECKSUM: 1083a6d2c610066fba0c27c5ff1e65bf6b259af3
+PODFILE CHECKSUM: b3ec653f1e19ad8fc600091ef725c44ac9e84c57
 
 COCOAPODS: 1.6.1
