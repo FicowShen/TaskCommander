@@ -46,7 +46,7 @@ class DownloadTaskTests: XCTestCase {
         }
 
         XCTAssertTrue(taskStates.count > 1)
-        guard let firstWorkingIndex = taskStates.firstIndex(where: { (taskState) -> Bool in taskState.description == "working" }) else {
+        guard let lastWorkingIndex = taskStates.lastIndex(where: { (taskState) -> Bool in taskState.description == "working" }) else {
             XCTFail("Load firstWorkingIndex failed")
             return
         }
@@ -54,9 +54,9 @@ class DownloadTaskTests: XCTestCase {
             XCTFail("Load firstSuccessIndex failed")
             return
         }
-        XCTAssertTrue(firstWorkingIndex < firstSuccessIndex)
+        XCTAssertTrue(lastWorkingIndex < firstSuccessIndex)
 
-        switch taskStates[firstWorkingIndex] {
+        switch taskStates[lastWorkingIndex] {
         case .working(let progress):
             XCTAssertEqual(progress.completedUnitCount, Int64(data.count))
             XCTAssertEqual(progress.totalUnitCount, Int64(data.count))
