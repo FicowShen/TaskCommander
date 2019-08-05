@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.summary          = 'Managing tasks with RxSwift.'
   s.swift_version    = '5.0'
   s.platform         = :ios, "10.0"
+  s.ios.deployment_target = '10.0'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
