@@ -34,16 +34,19 @@ Manage your task by using RxSwift. And there are some predefined Task types. Suc
 
   # DownloadTask & UploadTask
 
+  s.subspec 'Tasks' do |tasks|
+    tasks.source_files = 'Sources/Classes/TailoredTask/*.{h,m,swift}'
+    tasks.exclude_files = 'Sources/Classes/Task/*.{h,m,swift}', 'Sources/Classes/TaskCommander/*.{h,m,swift}'
+    tasks.dependency 'TaskCommander/Core'
+    tasks.dependency 'Alamofire', '~> 4.8.1'
+    tasks.dependency 'RxAlamofire', '~> 4.3.0'
+  end
+
   s.subspec 'Core' do |core|
     core.source_files = 'Sources/Classes/Task/*.{h,m,swift}', 'Sources/Classes/TaskCommander/*.{h,m,swift}'
     core.dependency 'RxSwift', '~> 4.4.0'
   end
 
-  s.subspec 'Tasks' do |tasks|
-    tasks.source_files = 'Sources/Classes/TailoredTask/*.{h,m,swift}'
-    tasks.exclude_files = 'Sources/Classes/Task/*.{h,m,swift}', 'Sources/Classes/TaskCommander/*.{h,m,swift}'
-    tasks.dependency 'Alamofire', '~> 4.8.1'
-    tasks.dependency 'RxAlamofire', '~> 4.3.0'
-  end
+  s.default_subspec = 'Tasks'
 
 end
