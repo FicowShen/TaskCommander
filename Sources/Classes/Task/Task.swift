@@ -21,7 +21,7 @@ public struct GroupTaskInfo: Equatable {
     }
 }
 
-public enum TaskState {
+public enum TaskState: CustomStringConvertible {
     case ready
     case working(_ progress: TaskProgress)
     case success

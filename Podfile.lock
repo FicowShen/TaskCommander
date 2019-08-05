@@ -14,16 +14,18 @@ PODS:
     - RxAtomic (>= 4.4.2, ~> 4.4)
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
-  - TaskCommander (1.0.0):
+  - TaskCommander/Core (1.0.1):
+    - RxSwift (~> 4.4.0)
+  - TaskCommander/Tasks (1.0.1):
     - Alamofire (~> 4.8.1)
     - RxAlamofire (~> 4.3.0)
-    - RxSwift (~> 4.4.0)
 
 DEPENDENCIES:
   - RxBlocking
   - RxCocoa (~> 4.4.0)
   - RxTest
-  - TaskCommander (from `./`)
+  - TaskCommander/Core (from `./`)
+  - TaskCommander/Tasks (from `./`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -47,8 +49,8 @@ SPEC CHECKSUMS:
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
-  TaskCommander: b228a1e1b1d49b3f97918be5f5cdfc9d28a95a63
+  TaskCommander: 06761ea66a4272c900ddde1b90b951e3c1fcf884
 
-PODFILE CHECKSUM: b3ec653f1e19ad8fc600091ef725c44ac9e84c57
+PODFILE CHECKSUM: 510ed8696c45a22f1218da15e2bcf357faf09da4
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.1

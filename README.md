@@ -46,7 +46,7 @@ pod 'TaskCommander'
 
 ## Author
 
-Ficow Shen, ficow_shen@qq.com
+Ficow Shen, ficowshen@hotmail.com
 
 
 ## License

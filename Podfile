@@ -1,7 +1,10 @@
 use_frameworks!
 
+platform :ios, '10.0'
+
 target 'TaskCommander_Example' do
-  pod 'TaskCommander', :path => './'
+  pod 'TaskCommander/Core', :path => './'
+  pod 'TaskCommander/Tasks', :path => './'
   pod 'RxCocoa', '~> 4.4.0'
 
   target 'TaskCommander_Tests' do

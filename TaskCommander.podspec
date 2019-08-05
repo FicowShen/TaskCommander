@@ -25,22 +25,25 @@ Manage your task by using RxSwift. And there are some predefined Task types. Suc
   s.homepage         = 'https://github.com/FicowShen/TaskCommander'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Ficow Shen' => 'ficow_shen@qq.com' }
+  s.author           = { 'Ficow Shen' => 'ficowshen@hotmail.com' }
   s.source           = { :git => 'https://github.com/FicowShen/TaskCommander.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
-  s.source_files = 'Sources/**/*.swift'
-  
-  # s.resource_bundles = {
-  #   'TaskCommander' => ['Sources/Assets/*.png']
-  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  # DownloadTask & UploadTask
 
-  s.dependency 'RxSwift', '~> 4.4.0'
-  s.dependency 'Alamofire', '~> 4.8.1'
-  s.dependency 'RxAlamofire', '~> 4.3.0'
+  s.subspec 'Core' do |core|
+    core.source_files = 'Sources/Classes/Task/*.{h,m,swift}', 'Sources/Classes/TaskCommander/*.{h,m,swift}'
+    core.dependency 'RxSwift', '~> 4.4.0'
+  end
+
+  s.subspec 'Tasks' do |tasks|
+    tasks.source_files = 'Sources/Classes/TailoredTask/*.{h,m,swift}'
+    tasks.exclude_files = 'Sources/Classes/Task/*.{h,m,swift}', 'Sources/Classes/TaskCommander/*.{h,m,swift}'
+    tasks.dependency 'Alamofire', '~> 4.8.1'
+    tasks.dependency 'RxAlamofire', '~> 4.3.0'
+  end
+
 end
