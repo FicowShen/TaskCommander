@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.version          = '1.0.2'
   s.summary          = 'Managing tasks with RxSwift.'
   s.swift_version    = '5.0'
+  s.platform         = :ios, "10.0"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -28,8 +29,6 @@ Manage your task by using RxSwift. And there are some predefined Task types. Suc
   s.author           = { 'Ficow Shen' => 'ficowshen@hotmail.com' }
   s.source           = { :git => 'https://github.com/FicowShen/TaskCommander.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '8.0'
 
 
   # DownloadTask & UploadTask
