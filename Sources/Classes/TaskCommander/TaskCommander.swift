@@ -24,8 +24,8 @@ public final class TaskCommander<T: TaskProtocol> {
 
     public func addTask(_ task: T) {
         let publishSubject = PublishSubject<TaskState>()
-        saveTask(task, observer: publishSubject.asObserver())
         task.observable = publishSubject.asObservable().share()
+        saveTask(task, observer: publishSubject.asObserver())
     }
 
     public func addTasks(_ tasks: [T]) {
