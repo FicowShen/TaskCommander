@@ -39,9 +39,16 @@ class DownloadTaskTests: XCTestCase {
         let commander = TaskCommander<DownloadTask>(subscribeScheduler: MainScheduler.instance, observeScheduler: MainScheduler.instance)
         commander.addTask(task)
 
-        guard let taskStates = try? task.observable?.toBlocking().toArray(),
-            let data = task.data else {
-            XCTFail("Download failed")
+        guard let taskStates = try? task.observable?.toBlocking().toArray() else {
+            XCTFail("Failed to load taskStates")
+            return
+        }
+        guard let data = task.data else {
+            guard case .failure(let error) = task.state else {
+                XCTFail("Download data failed")
+                return
+            }
+            XCTFail("Download data failed with error: \(error)")
             return
         }
 
